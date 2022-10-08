@@ -53,23 +53,23 @@ namespace IMGUIZMO_NAMESPACE
 
    static OPERATION operator&(OPERATION lhs, OPERATION rhs)
    {
-     return static_cast<OPERATION>(static_cast<int>(lhs) & static_cast<int>(rhs));
+      return static_cast<OPERATION>(static_cast<int>(lhs) & static_cast<int>(rhs));
    }
 
    static bool operator!=(OPERATION lhs, int rhs)
    {
-     return static_cast<int>(lhs) != rhs;
+      return static_cast<int>(lhs) != rhs;
    }
 
    static bool Intersects(OPERATION lhs, OPERATION rhs)
    {
-     return (lhs & rhs) != 0;
+      return (lhs & rhs) != 0;
    }
 
    // True if lhs contains rhs
    static bool Contains(OPERATION lhs, OPERATION rhs)
    {
-     return (lhs & rhs) == rhs;
+      return (lhs & rhs) == rhs;
    }
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -219,7 +219,7 @@ namespace IMGUIZMO_NAMESPACE
       const vec_t& operator + () const { return (*this); }
       float Length() const { return sqrtf(x * x + y * y + z * z); };
       float LengthSq() const { return (x * x + y * y + z * z); };
-      vec_t Normalize() { (*this) *= (1.f / ( Length() > FLT_EPSILON ? Length() : FLT_EPSILON ) ); return (*this); }
+      vec_t Normalize() { (*this) *= (1.f / (Length() > FLT_EPSILON ? Length() : FLT_EPSILON)); return (*this); }
       vec_t Normalize(const vec_t& v) { this->Set(v.x, v.y, v.z, v.w); this->Normalize(); return (*this); }
       vec_t Abs() const;
 
@@ -618,17 +618,17 @@ namespace IMGUIZMO_NAMESPACE
 
    static bool IsTranslateType(int type)
    {
-     return type >= MT_MOVE_X && type <= MT_MOVE_SCREEN;
+      return type >= MT_MOVE_X && type <= MT_MOVE_SCREEN;
    }
 
    static bool IsRotateType(int type)
    {
-     return type >= MT_ROTATE_X && type <= MT_ROTATE_SCREEN;
+      return type >= MT_ROTATE_X && type <= MT_ROTATE_SCREEN;
    }
 
    static bool IsScaleType(int type)
    {
-     return type >= MT_SCALE_X && type <= MT_SCALE_XYZ;
+      return type >= MT_SCALE_X && type <= MT_SCALE_XYZ;
    }
 
    // Matches MT_MOVE_AB order
@@ -637,31 +637,31 @@ namespace IMGUIZMO_NAMESPACE
    Style::Style()
    {
       // default values
-      TranslationLineThickness   = 3.0f;
-      TranslationLineArrowSize   = 6.0f;
-      RotationLineThickness      = 2.0f;
+      TranslationLineThickness = 3.0f;
+      TranslationLineArrowSize = 6.0f;
+      RotationLineThickness = 2.0f;
       RotationOuterLineThickness = 3.0f;
-      ScaleLineThickness         = 3.0f;
-      ScaleLineCircleSize        = 6.0f;
-      HatchedAxisLineThickness   = 6.0f;
-      CenterCircleSize           = 6.0f;
+      ScaleLineThickness = 3.0f;
+      ScaleLineCircleSize = 6.0f;
+      HatchedAxisLineThickness = 0.0f;
+      CenterCircleSize = 6.0f;
 
       // initialize default colors
-      Colors[DIRECTION_X]           = ImVec4(0.666f, 0.000f, 0.000f, 1.000f);
-      Colors[DIRECTION_Y]           = ImVec4(0.000f, 0.666f, 0.000f, 1.000f);
-      Colors[DIRECTION_Z]           = ImVec4(0.000f, 0.000f, 0.666f, 1.000f);
-      Colors[PLANE_X]               = ImVec4(0.666f, 0.000f, 0.000f, 0.380f);
-      Colors[PLANE_Y]               = ImVec4(0.000f, 0.666f, 0.000f, 0.380f);
-      Colors[PLANE_Z]               = ImVec4(0.000f, 0.000f, 0.666f, 0.380f);
-      Colors[SELECTION]             = ImVec4(1.000f, 0.500f, 0.062f, 0.541f);
-      Colors[INACTIVE]              = ImVec4(0.600f, 0.600f, 0.600f, 0.600f);
-      Colors[TRANSLATION_LINE]      = ImVec4(0.666f, 0.666f, 0.666f, 0.666f);
-      Colors[SCALE_LINE]            = ImVec4(0.250f, 0.250f, 0.250f, 1.000f);
+      Colors[DIRECTION_X] = ImVec4(1.0f, 0.4f, 0.33f, 1.000f);
+      Colors[DIRECTION_Y] = ImVec4(0.145f, 0.667f, 0.145f, 1.000f);
+      Colors[DIRECTION_Z] = ImVec4(0.800f, 0.325f, 0.173f, 1.000f);
+      Colors[PLANE_X] = ImVec4(0.478f, 0.408f, 0.847f, 1.000f);
+      Colors[PLANE_Y] = ImVec4(0.333f, 0.671f, 0.333f, 1.000f);
+      Colors[PLANE_Z] = ImVec4(0.851f, 0.404f, 0.259f, 1.000f);
+      Colors[SELECTION] = ImVec4(0.059f, 0.949f, 0.039f, 0.675f);
+      Colors[INACTIVE] = ImVec4(0.600f, 0.600f, 0.600f, 0.600f);
+      Colors[TRANSLATION_LINE] = ImVec4(0.666f, 0.666f, 0.666f, 0.666f);
+      Colors[SCALE_LINE] = ImVec4(0.250f, 0.250f, 0.250f, 1.000f);
       Colors[ROTATION_USING_BORDER] = ImVec4(1.000f, 0.500f, 0.062f, 1.000f);
-      Colors[ROTATION_USING_FILL]   = ImVec4(1.000f, 0.500f, 0.062f, 0.500f);
-      Colors[HATCHED_AXIS_LINES]    = ImVec4(0.000f, 0.000f, 0.000f, 0.500f);
-      Colors[TEXT]                  = ImVec4(1.000f, 1.000f, 1.000f, 1.000f);
-      Colors[TEXT_SHADOW]           = ImVec4(0.000f, 0.000f, 0.000f, 1.000f);
+      Colors[ROTATION_USING_FILL] = ImVec4(1.000f, 0.500f, 0.062f, 0.500f);
+      Colors[HATCHED_AXIS_LINES] = ImVec4(0.000f, 0.000f, 0.000f, 0.500f);
+      Colors[TEXT] = ImVec4(1.000f, 1.000f, 1.000f, 1.000f);
+      Colors[TEXT_SHADOW] = ImVec4(0.000f, 0.000f, 0.000f, 1.000f);
    }
 
    struct Context
@@ -994,19 +994,19 @@ namespace IMGUIZMO_NAMESPACE
 
    bool IsOver(OPERATION op)
    {
-      if(IsUsing())
+      if (IsUsing())
       {
          return true;
       }
-      if(Intersects(op, SCALE) && GetScaleType(op) != MT_NONE)
+      if (Intersects(op, SCALE) && GetScaleType(op) != MT_NONE)
       {
          return true;
       }
-      if(Intersects(op, ROTATE) && GetRotateType(op) != MT_NONE)
+      if (Intersects(op, ROTATE) && GetRotateType(op) != MT_NONE)
       {
          return true;
       }
-      if(Intersects(op, TRANSLATE) && GetMoveType(op, NULL) != MT_NONE)
+      if (Intersects(op, TRANSLATE) && GetMoveType(op, NULL) != MT_NONE)
       {
          return true;
       }
@@ -1058,11 +1058,11 @@ namespace IMGUIZMO_NAMESPACE
       gContext.mCameraUp = viewInverse.v.up;
 
       // projection reverse
-       vec_t nearPos, farPos;
-       nearPos.Transform(makeVect(0, 0, 1.f, 1.f), gContext.mProjectionMat);
-       farPos.Transform(makeVect(0, 0, 2.f, 1.f), gContext.mProjectionMat);
+      vec_t nearPos, farPos;
+      nearPos.Transform(makeVect(0, 0, 1.f, 1.f), gContext.mProjectionMat);
+      farPos.Transform(makeVect(0, 0, 2.f, 1.f), gContext.mProjectionMat);
 
-       gContext.mReversed = (nearPos.z/nearPos.w) > (farPos.z / farPos.w);
+      gContext.mReversed = (nearPos.z / nearPos.w) > (farPos.z / farPos.w);
 
       // compute scale from the size of camera right vector projected on screen at the matrix position
       vec_t pointRight = viewInverse.v.right;
@@ -1114,7 +1114,7 @@ namespace IMGUIZMO_NAMESPACE
                colors[i + 1] = (type == (int)(MT_SCALE_X + i)) ? selectionColor : GetColorU32(DIRECTION_X + i);
             }
             break;
-         // note: this internal function is only called with three possible values for operation
+            // note: this internal function is only called with three possible values for operation
          default:
             break;
          }
@@ -1158,7 +1158,7 @@ namespace IMGUIZMO_NAMESPACE
          float lenDirMinusPlaneY = GetSegmentLengthClipSpace(makeVect(0.f, 0.f, 0.f), -dirPlaneY, localCoordinates);
 
          // For readability
-         bool & allowFlip = gContext.mAllowAxisFlip;
+         bool& allowFlip = gContext.mAllowAxisFlip;
          float mulAxis = (allowFlip && lenDir < lenDirMinus&& fabsf(lenDir - lenDirMinus) > FLT_EPSILON) ? -1.f : 1.f;
          float mulAxisX = (allowFlip && lenDirPlaneX < lenDirMinusPlaneX&& fabsf(lenDirPlaneX - lenDirMinusPlaneX) > FLT_EPSILON) ? -1.f : 1.f;
          float mulAxisY = (allowFlip && lenDirPlaneY < lenDirMinusPlaneY&& fabsf(lenDirPlaneY - lenDirMinusPlaneY) > FLT_EPSILON) ? -1.f : 1.f;
@@ -1224,7 +1224,7 @@ namespace IMGUIZMO_NAMESPACE
 
    static void DrawRotationGizmo(OPERATION op, int type)
    {
-      if(!Intersects(op, ROTATE))
+      if (!Intersects(op, ROTATE))
       {
          return;
       }
@@ -1253,12 +1253,12 @@ namespace IMGUIZMO_NAMESPACE
       bool hasRSC = Intersects(op, ROTATE_SCREEN);
       for (int axis = 0; axis < 3; axis++)
       {
-         if(!Intersects(op, static_cast<OPERATION>(ROTATE_Z >> axis)))
+         if (!Intersects(op, static_cast<OPERATION>(ROTATE_Z >> axis)))
          {
             continue;
          }
          const bool usingAxis = (gContext.mbUsing && type == MT_ROTATE_Z - axis);
-         const int circleMul = (hasRSC && !usingAxis ) ? 1 : 2;
+         const int circleMul = (hasRSC && !usingAxis) ? 1 : 2;
 
          ImVec2* circlePos = (ImVec2*)alloca(sizeof(ImVec2) * (circleMul * halfCircleSegmentCount + 1));
 
@@ -1273,7 +1273,7 @@ namespace IMGUIZMO_NAMESPACE
          }
          if (!gContext.mbUsing || usingAxis)
          {
-            drawList->AddPolyline(circlePos, circleMul* halfCircleSegmentCount + 1, colors[3 - axis], false, gContext.mStyle.RotationLineThickness);
+            drawList->AddPolyline(circlePos, circleMul * halfCircleSegmentCount + 1, colors[3 - axis], false, gContext.mStyle.RotationLineThickness);
          }
 
          float radiusAxis = sqrtf((ImLengthSqr(worldToPos(gContext.mModel.v.position, gContext.mViewProjection) - circlePos[0])));
@@ -1282,7 +1282,7 @@ namespace IMGUIZMO_NAMESPACE
             gContext.mRadiusSquareCenter = radiusAxis;
          }
       }
-      if(hasRSC && (!gContext.mbUsing || type == MT_ROTATE_SCREEN))
+      if (hasRSC && (!gContext.mbUsing || type == MT_ROTATE_SCREEN))
       {
          drawList->AddCircle(worldToPos(gContext.mModel.v.position, gContext.mViewProjection), gContext.mRadiusSquareCenter, colors[0], 64, gContext.mStyle.RotationOuterLineThickness);
       }
@@ -1327,9 +1327,9 @@ namespace IMGUIZMO_NAMESPACE
    {
       ImDrawList* drawList = gContext.mDrawList;
 
-      if(!Intersects(op, SCALE))
+      if (!Intersects(op, SCALE))
       {
-        return;
+         return;
       }
 
       // colors
@@ -1346,7 +1346,7 @@ namespace IMGUIZMO_NAMESPACE
 
       for (int i = 0; i < 3; i++)
       {
-         if(!Intersects(op, static_cast<OPERATION>(SCALE_X << i)))
+         if (!Intersects(op, static_cast<OPERATION>(SCALE_X << i)))
          {
             continue;
          }
@@ -1379,10 +1379,10 @@ namespace IMGUIZMO_NAMESPACE
                }
                drawList->AddCircleFilled(worldDirSSpace, gContext.mStyle.ScaleLineCircleSize, colors[i + 1]);
 
-               if (gContext.mAxisFactor[i] < 0.f)
-               {
-                  DrawHatchedAxis(dirAxis * scaleDisplay[i]);
-               }
+               // if (gContext.mAxisFactor[i] < 0.f)
+               // {
+               //    DrawHatchedAxis(dirAxis * scaleDisplay[i]);
+               // }
             }
          }
       }
@@ -1503,7 +1503,7 @@ namespace IMGUIZMO_NAMESPACE
          return;
       }
 
-      if(!Intersects(op, TRANSLATE))
+      if (!Intersects(op, TRANSLATE))
       {
          return;
       }
@@ -1544,10 +1544,10 @@ namespace IMGUIZMO_NAMESPACE
                drawList->AddTriangleFilled(worldDirSSpace - dir, a + ortogonalDir, a - ortogonalDir, colors[i + 1]);
                // Arrow head end
 
-               if (gContext.mAxisFactor[i] < 0.f)
-               {
-                  DrawHatchedAxis(dirAxis);
-               }
+               // if (gContext.mAxisFactor[i] < 0.f)
+               // {
+               //    DrawHatchedAxis(dirAxis);
+               // }
             }
          }
          // draw plane
@@ -1718,15 +1718,15 @@ namespace IMGUIZMO_NAMESPACE
             int type = MT_NONE;
             vec_t gizmoHitProportion;
 
-            if(Intersects(operation, TRANSLATE))
+            if (Intersects(operation, TRANSLATE))
             {
                type = GetMoveType(operation, &gizmoHitProportion);
             }
-            if(Intersects(operation, ROTATE) && type == MT_NONE)
+            if (Intersects(operation, ROTATE) && type == MT_NONE)
             {
                type = GetRotateType(operation);
             }
-            if(Intersects(operation, SCALE) && type == MT_NONE)
+            if (Intersects(operation, SCALE) && type == MT_NONE)
             {
                type = GetScaleType(operation);
             }
@@ -1850,7 +1850,8 @@ namespace IMGUIZMO_NAMESPACE
             drawList->AddText(ImVec2(destinationPosOnScreen.x + 14, destinationPosOnScreen.y + 14), GetColorU32(TEXT), tmps);
          }
 
-         if (!io.MouseDown[0]) {
+         if (!io.MouseDown[0])
+         {
             gContext.mbUsingBounds = false;
             gContext.mEditingID = -1;
          }
@@ -1884,7 +1885,7 @@ namespace IMGUIZMO_NAMESPACE
       // compute
       for (int i = 0; i < 3 && type == MT_NONE; i++)
       {
-         if(!Intersects(op, static_cast<OPERATION>(SCALE_X << i)))
+         if (!Intersects(op, static_cast<OPERATION>(SCALE_X << i)))
          {
             continue;
          }
@@ -1974,7 +1975,7 @@ namespace IMGUIZMO_NAMESPACE
 
       for (int i = 0; i < 3 && type == MT_NONE; i++)
       {
-         if(!Intersects(op, static_cast<OPERATION>(ROTATE_X << i)))
+         if (!Intersects(op, static_cast<OPERATION>(ROTATE_X << i)))
          {
             continue;
          }
@@ -2000,7 +2001,7 @@ namespace IMGUIZMO_NAMESPACE
          const ImVec2 distanceOnScreen = idealPosOnCircleScreen - io.MousePos;
 
          const float distance = makeVect(distanceOnScreen).Length();
-         if (distance < 8.f) // pixel size
+         if (distance < 10.f) // pixel size
          {
             type = MT_ROTATE_X + i;
          }
@@ -2011,9 +2012,9 @@ namespace IMGUIZMO_NAMESPACE
 
    static int GetMoveType(OPERATION op, vec_t* gizmoHitProportion)
    {
-      if(!Intersects(op, TRANSLATE) || gContext.mbUsing || !gContext.mbMouseOver)
+      if (!Intersects(op, TRANSLATE) || gContext.mbUsing || !gContext.mbMouseOver)
       {
-        return MT_NONE;
+         return MT_NONE;
       }
       ImGuiIO& io = ImGui::GetIO();
       int type = MT_NONE;
@@ -2067,9 +2068,9 @@ namespace IMGUIZMO_NAMESPACE
 
    static bool HandleTranslation(float* matrix, float* deltaMatrix, OPERATION op, int& type, const float* snap)
    {
-      if(!Intersects(op, TRANSLATE) || type != MT_NONE)
+      if (!Intersects(op, TRANSLATE) || type != MT_NONE)
       {
-        return false;
+         return false;
       }
       const ImGuiIO& io = ImGui::GetIO();
       const bool applyRotationLocaly = gContext.mMode == LOCAL || type == MT_MOVE_SCREEN;
@@ -2189,7 +2190,7 @@ namespace IMGUIZMO_NAMESPACE
 
    static bool HandleScale(float* matrix, float* deltaMatrix, OPERATION op, int& type, const float* snap)
    {
-      if((!Intersects(op, SCALE) && !Intersects(op, SCALEU)) || type != MT_NONE || !gContext.mbMouseOver)
+      if ((!Intersects(op, SCALE) && !Intersects(op, SCALEU)) || type != MT_NONE || !gContext.mbMouseOver)
       {
          return false;
       }
@@ -2310,9 +2311,9 @@ namespace IMGUIZMO_NAMESPACE
 
    static bool HandleRotation(float* matrix, float* deltaMatrix, OPERATION op, int& type, const float* snap)
    {
-      if(!Intersects(op, ROTATE) || type != MT_NONE || !gContext.mbMouseOver)
+      if (!Intersects(op, ROTATE) || type != MT_NONE || !gContext.mbMouseOver)
       {
-        return false;
+         return false;
       }
       ImGuiIO& io = ImGui::GetIO();
       bool applyRotationLocaly = gContext.mMode == LOCAL;
@@ -2473,7 +2474,7 @@ namespace IMGUIZMO_NAMESPACE
 
    void AllowAxisFlip(bool value)
    {
-     gContext.mAllowAxisFlip = value;
+      gContext.mAllowAxisFlip = value;
    }
 
    bool Manipulate(const float* view, const float* projection, OPERATION operation, MODE mode, float* matrix, float* deltaMatrix, const float* snap, const float* localBounds, const float* boundsSnap)
@@ -2503,8 +2504,8 @@ namespace IMGUIZMO_NAMESPACE
          if (!gContext.mbUsingBounds)
          {
             manipulated = HandleTranslation(matrix, deltaMatrix, operation, type, snap) ||
-                          HandleScale(matrix, deltaMatrix, operation, type, snap) ||
-                          HandleRotation(matrix, deltaMatrix, operation, type, snap);
+               HandleScale(matrix, deltaMatrix, operation, type, snap) ||
+               HandleRotation(matrix, deltaMatrix, operation, type, snap);
          }
       }
 
@@ -2671,7 +2672,7 @@ namespace IMGUIZMO_NAMESPACE
             return 1;
          }
          return -1;
-         });
+      });
       // draw face with lighter color
       for (int iFace = 0; iFace < cubeFaceCount; iFace++)
       {
@@ -2726,7 +2727,7 @@ namespace IMGUIZMO_NAMESPACE
             {
                ImU32 col = IM_COL32(0x80, 0x80, 0x80, 0xFF);
                col = (fmodf(fabsf(f), 10.f) < FLT_EPSILON) ? IM_COL32(0x90, 0x90, 0x90, 0xFF) : col;
-               col = (fabsf(f) < FLT_EPSILON) ? IM_COL32(0x40, 0x40, 0x40, 0xFF): col;
+               col = (fabsf(f) < FLT_EPSILON) ? IM_COL32(0x40, 0x40, 0x40, 0xFF) : col;
 
                float thickness = 1.f;
                thickness = (fmodf(fabsf(f), 10.f) < FLT_EPSILON) ? 1.5f : thickness;
@@ -2853,7 +2854,7 @@ namespace IMGUIZMO_NAMESPACE
                }
 
                const ImVec2 panelCorners[2] = { panelPosition[iPanel], panelPosition[iPanel] + panelSize[iPanel] };
-               bool insidePanel = localx > panelCorners[0].x && localx < panelCorners[1].x && localy > panelCorners[0].y && localy < panelCorners[1].y;
+               bool insidePanel = localx > panelCorners[0].x && localx < panelCorners[1].x&& localy > panelCorners[0].y && localy < panelCorners[1].y;
                int boxCoordInt = int(boxCoord.x * 9.f + boxCoord.y * 3.f + boxCoord.z);
                IM_ASSERT(boxCoordInt < 27);
                boxes[boxCoordInt] |= insidePanel && (!isDraging) && gContext.mbMouseOver;
@@ -2867,7 +2868,8 @@ namespace IMGUIZMO_NAMESPACE
                   {
                      gContext.mDrawList->AddConvexPolyFilled(faceCoordsScreen, 4, IM_COL32(0xF0, 0xA0, 0x60, 0x80));
 
-                     if (io.MouseDown[0] && !isClicking && !isDraging) {
+                     if (io.MouseDown[0] && !isClicking && !isDraging)
+                     {
                         overBox = boxCoordInt;
                         isClicking = true;
                         isDraging = true;
@@ -2929,7 +2931,7 @@ namespace IMGUIZMO_NAMESPACE
                interpolationUp = referenceUp;
             }
             interpolationFrames = 40;
-            
+
          }
          isClicking = false;
          isDraging = false;
